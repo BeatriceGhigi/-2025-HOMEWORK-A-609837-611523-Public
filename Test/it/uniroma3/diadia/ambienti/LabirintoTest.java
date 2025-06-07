@@ -1,33 +1,32 @@
 package it.uniroma3.diadia.ambienti;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-
-
-class LabirintoTest {    //FUNZIONA
-
+public class LabirintoTest {
 	
+	private static final String VINCENTE = "vincente";
+	private static final String INIZIALE = "iniziale";
 	private Labirinto labirinto;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-		this.labirinto= new Labirinto();
-		
+	@Before
+	public void setUp() {
+		this.labirinto = Labirinto.newBuilder()
+				.addStanzaIniziale(INIZIALE)
+				.addStanzaVincente(VINCENTE)
+				.getLabirinto();
 	}
 
 	@Test
-	void test_getStanzaIniziale() {
-	assertEquals("Atrio", labirinto.getStanzaIniziale().getNome()); //metti maiuscola
-		
+	public void testGetStanzaIniziale() {
+		assertEquals(INIZIALE, this.labirinto.getStanzaCorrente().getNome());
 	}
-	
+
 	@Test
-	void test_getStanzaFinale() {
-	assertEquals("Biblioteca", labirinto.getStanzaFinale().getNome());	// metti maiuscola
+	public void testGetStanzaVincente() {
+		assertEquals(VINCENTE, this.labirinto.getStanzaVincente().getNome());
 	}
-	
 
 }

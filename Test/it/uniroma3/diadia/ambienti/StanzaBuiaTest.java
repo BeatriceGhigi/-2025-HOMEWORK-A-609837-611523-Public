@@ -1,34 +1,40 @@
 package it.uniroma3.diadia.ambienti;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
+import it.uniroma3.diadia.fixture.Fixture;
 
+public class StanzaBuiaTest {
 
-import it.uniroma3.diadia.attrezzi.Attrezzo;
-
-class StanzaBuiaTest {
-    
-	private StanzaBuia stanza;
-	private Attrezzo attrezzo;
+	private static final String ATTREZZO_LUCE_TEST = "attrezzoLuceTest";
+	private StanzaBuia stanzaBuia;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-	stanza= new StanzaBuia("stanzaBuia", "lampadina");
-	attrezzo= new Attrezzo("lampadina", 1);	
+	@Before
+	public void setUp() {
+		this.stanzaBuia = new StanzaBuia("StanzaBuia", ATTREZZO_LUCE_TEST);
 	}
 
 	@Test
-	void test_PossoIlluminare() {
-		stanza.addAttrezzo(attrezzo);
-		assertEquals(stanza.toString(), stanza.getDescrizione());	
+	public void testGetDescrizioneLuceNonPresente() {
+		assertEquals(StanzaBuia.DESCRIZIONE_STANZA_BUIA, this.stanzaBuia.getDescrizione());
 	}
 	
 	@Test
-	void test_NonPossoIlluminare() {
-		String buio="qui c'è buio pesto!";
-		assertEquals(buio, stanza.getDescrizione());
+	public void testGetDescrizioneConLuce() {
+		Fixture.creaAttrezzoEAggiungiAStanza(this.stanzaBuia, ATTREZZO_LUCE_TEST, 1);
+		assertNotEquals(StanzaBuia.DESCRIZIONE_STANZA_BUIA, this.stanzaBuia.getDescrizione());
 	}
+	
+	@Test
+	public void testGetAttrezzoInesistente() {
+		Fixture.creaAttrezzoEAggiungiAStanza(this.stanzaBuia, "attrezzoDiTest", 1);
+		assertNull(this.stanzaBuia.getAttrezzo("inesistente"));		
+	}
+	
+
 }

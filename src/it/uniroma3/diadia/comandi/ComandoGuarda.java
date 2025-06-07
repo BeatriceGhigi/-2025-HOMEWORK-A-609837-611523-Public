@@ -5,7 +5,7 @@ import it.uniroma3.diadia.Partita;
 
 
  
- public class ComandoGuarda implements Comando {
+ public class ComandoGuarda extends AbstractComando {
 	
 	 
 	 private IO io;
@@ -24,9 +24,7 @@ import it.uniroma3.diadia.Partita;
 		io.mostraMessaggio(partita.getGiocatore().getBorsa().toString());
 		}
 	
-	@Override
-	public void setParametro(String parametro) {
-		}
+	
 	
 	@Override
 	public String getParametro() {
@@ -34,8 +32,6 @@ import it.uniroma3.diadia.Partita;
 	}
 
 	@Override
-	public void setIo(IO io) {
-		 this.io=io;
-		
-	}
+	public void setParametro(String parametro) {
+		}
 }

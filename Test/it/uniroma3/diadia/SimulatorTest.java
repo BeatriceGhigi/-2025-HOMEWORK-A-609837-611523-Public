@@ -1,6 +1,8 @@
 package it.uniroma3.diadia;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +32,7 @@ public class SimulatorTest {
 				"fine"
 				);
 		
-		String[] messaggi=io.getMessaggiProdotti();
+		List<String> messaggi=io.getMessaggiProdotti();
 		
 		boolean messaggioRaccolta=false;
 		for(String msg : messaggi) {

@@ -5,7 +5,7 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoPrendi implements Comando{
+public class ComandoPrendi extends AbstractComando{
 	
 	private IO io;
 	private String nomeAttrezzo;
@@ -37,9 +37,8 @@ public class ComandoPrendi implements Comando{
 	}
 
 	@Override
-	public void setIo(IO io) {
-		 this.io=io;
-		
+	public void setIO(IO io) {
+		this.io = io;
 	}
 	
 }

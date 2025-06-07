@@ -1,41 +1,29 @@
 package it.uniroma3.diadia.giocatore;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
-import it.uniroma3.diadia.attrezzi.Attrezzo;
+import org.junit.Before;
+import org.junit.Test;
 
-class GiocatoreTest {   //FUNZIONA
+
+public class GiocatoreTest {
+	
 	private Giocatore giocatore;
-   	private Attrezzo attrezzo;
-    
-    
-   	
-	@BeforeEach
-	void setUp() throws Exception {
-		this.giocatore= new Giocatore();
-		this.attrezzo= new Attrezzo("attrezzo", 10);
+	
+	@Before
+	public void setUp() {
+		this.giocatore = new Giocatore();
 	}
 	
 	@Test
-	void test_prendere_attrezzo() {
-   assertTrue(this.giocatore.prendereAttrezzo(this.attrezzo));
-	
+	public void testCfuNonFinitiInizioPartita() {
+		assertNotEquals(0,this.giocatore.getCfu());
 	}
 	
 	@Test
-	void test_posare_attrezzo() {
-	this.giocatore.prendereAttrezzo(this.attrezzo);
-	assertTrue(this.giocatore.posareAttrezzo("attrezzo")!=null);
-	assertFalse(this.giocatore.getBorsa().hasAttrezzo("attrezzo"));
-	
+	public void testCfuIniziali() {
+		assertEquals(Giocatore.CFU_INIZIALI,this.giocatore.getCfu());
 	}
-	
-	@Test
-	void test_setGetCfu() {
-		giocatore.setCfu(10);
-		assertEquals(10, giocatore.getCfu());
-	}
-	
+
 }
